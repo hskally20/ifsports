@@ -1,0 +1,13 @@
+{% extends 'modelo.html' %}
+
+{% block title %}Listar Times{% endblock %}
+
+{% block content %}
+<h2>Times Cadastrados</h2>
+<ul>
+    {% for time in times %}
+    <li>{{ time.nome }} - {{ time.frase_efeito }}</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'criar_time' %}" class="button">Adicionar Novo Time</a>
+{% endblock %}

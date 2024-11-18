@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Página Inicial{% endblock %}
+
+{% block content %}
+<h1>Bem-vindo ao Sistema de Gestão de Competições</h1>
+<p>Selecione uma opção abaixo para gerenciar os dados:</p>
+
+<section class="links">
+    <h2>Times</h2>
+    <ul>
+        <li><a href="{% url 'listar_times' %}">Listar Times</a></li>
+        <li><a href="{% url 'criar_time' %}">Adicionar Novo Time</a></li>
+    </ul>
+
+    <h2>Jogadores</h2>
+    <ul>
+        <li><a href="{% url 'listar_jogadores' %}">Listar Jogadores</a></li>
+        <li><a href="{% url 'criar_jogador' %}">Adicionar Novo Jogador</a></li>
+    </ul>
+
+    <h2>Árbitros</h2>
+    <ul>
+        <li><a href="{% url 'listar_arbitros' %}">Listar Árbitros</a></li>
+        <li><a href="{% url 'criar_arbitro' %}">Adicionar Novo Árbitro</a></li>
+    </ul>
+</section>
+{% endblock %}

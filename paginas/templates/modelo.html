@@ -1,0 +1,40 @@
+{{ load static }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Meu Projeto{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Meu Projeto</h1>
+            <nav class="menu">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Times</a></li>
+                    <li><a href="#">Jogadores</a></li>
+                    <li><a href="#">Árbitros</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="content">
+        <div class="container">
+            {% block content %}
+            <h2>Bem-vindo ao Meu Projeto</h2>
+            <p>Esta é uma página modelo com a paleta de cores verde, branco e vermelho.</p>
+            {% endblock %}
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 - Meu Projeto. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
