@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import indexView
+from .views import IndexView
 from django.contrib.auth import views as auth_views
 
 
@@ -9,5 +9,5 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view (),  name='logout'),
 
     #cadastros 
-    path('', IndexView.as_view(), name='inicio'),
+    path('/', IndexView.as_view(), name='inicio'),
     ]
