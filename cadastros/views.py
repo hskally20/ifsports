@@ -3,7 +3,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .models import Time, Jogador, Arbitro, Evento
 
 # Views para Time
-class TimeListView(ListView):
+class TimeList(ListView):
     model = Time
     template_name = 'listar/times.html'
     context_object_name = 'times'
@@ -12,44 +12,44 @@ class TimeCreateView(CreateView):
     model = Time
     fields = ['nome', 'frase_efeito', 'qtd_jogadores']
     template_name = 'form.html'
-    success_url = reverse_lazy('listar/times')
+    success_url = reverse_lazy('listar_times')
 
-class TimeUpdateView(UpdateView):
+class TimeUpdate(UpdateView):
     model = Time
     fields = ['nome', 'frase_efeito', 'qtd_jogadores']
     template_name = 'form.html'
-    success_url = reverse_lazy('listar/times')
+    success_url = reverse_lazy('listar_times')
 
-class TimeDeleteView(DeleteView):
+class TimeDelete(DeleteView):
     model = Time
     template_name = 'form-excluir.html'
-    success_url = reverse_lazy('listar-times')
+    success_url = reverse_lazy('listar_times')
 
 # Views para Jogador
-class JogadorListView(ListView):
+class JogadorList(ListView):
     model = Jogador
-    template_name = 'jogador/listar-jogadores.html'
+    template_name = 'listar/jogadores.html'
     context_object_name = 'jogadores'
 
 class JogadorCreateView(CreateView):
     model = Jogador
     fields = ['nome', 'idade', 'posicao', 'time']
     template_name = 'form.html'
-    success_url = reverse_lazy('listar-jogadores')
+    success_url = reverse_lazy('listar_jogadores')
 
-class JogadorUpdateView(UpdateView):
+class JogadorUpdate(UpdateView):
     model = Jogador
     fields = ['nome', 'idade', 'posicao', 'time']
     template_name = 'form.html'
-    success_url = reverse_lazy('listar-jogadores')
+    success_url = reverse_lazy('listar_jogadores')
 
-class JogadorDeleteView(DeleteView):
+class JogadorDelete(DeleteView):
     model = Jogador
-    template_name = '.html'
-    success_url = reverse_lazy('listar-jogadores')
+    template_name = 'form-excluir.html'
+    success_url = reverse_lazy('listar_jogadores')
 
 # Views para Árbitro
-class ArbitroListView(ListView):
+class ArbitroList(ListView):
     model = Arbitro
     template_name = 'arbitro/listar_arbitros.html'
     context_object_name = 'arbitros'
@@ -58,21 +58,21 @@ class ArbitroCreateView(CreateView):
     model = Arbitro
     fields = ['nome', 'experiencia', 'cidade']
     template_name = 'form.html'
-    success_url = reverse_lazy('listar-arbitros')
+    success_url = reverse_lazy('listar_arbitros')
 
-class ArbitroUpdateView(UpdateView):
+class ArbitroUpdate(UpdateView):
     model = Arbitro
     fields = ['nome', 'experiencia', 'cidade']
     template_name = 'form.html'
-    success_url = reverse_lazy('listar-arbitros')
+    success_url = reverse_lazy('listar_arbitros')
 
-class ArbitroDeleteView(DeleteView):
+class ArbitroDelete(DeleteView):
     model = Arbitro
     template_name = 'form-excluir.html'
-    success_url = reverse_lazy('listar-arbitros')
+    success_url = reverse_lazy('listar_arbitros')
 
 # Views para Evento
-class EventoListView(ListView):
+class EventoList(ListView):
     model = Evento
     template_name = 'evento/listar-eventos.html'
     context_object_name = 'eventos'
@@ -81,15 +81,15 @@ class EventoCreateView(CreateView):
     model = Evento
     fields = ['nome', 'data', 'esporte', 'times', 'descricao']
     template_name = 'form.html'
-    success_url = reverse_lazy('listar-eventos')
+    success_url = reverse_lazy('listar_eventos')
 
-class EventoUpdateView(UpdateView):
+class EventoUpdate(UpdateView):
     model = Evento
     fields = ['nome', 'data', 'esporte', 'times', 'descricao']
     template_name = 'form.html'
-    success_url = reverse_lazy('listar-eventos')
+    success_url = reverse_lazy('listar_eventos')
 
-class EventoDeleteView(DeleteView):
+class EventoDelete(DeleteView):
     model = Evento
     template_name = 'form-excluir.html'
-    success_url = reverse_lazy('listar-eventos')
+    success_url = reverse_lazy('listar_eventos')
