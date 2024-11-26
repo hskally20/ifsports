@@ -1,8 +1,14 @@
+{% extends 'modelo.html' %}
 
+{% block title %}{{ Titulo }}{% endblock %}
+
+{% block content %}
 <h1>{{ Titulo }}</h1>
-<p>Tem certeza de que deseja excluir o time "{{ object.nome }}"?</p>
+<p>Tem certeza de que deseja excluir este item?</p>
+
 <form method="POST">
     {% csrf_token %}
-    <button type="submit">Confirmar</button>
-    <a href="{% url 'listar_times' %}">Cancelar</a>
+    <button type="submit" class="delete-btn">Excluir</button>
+    <a href="{% url 'listar_times' %}" class="cancel-btn">Cancelar</a>
 </form>
+{% endblock %}
