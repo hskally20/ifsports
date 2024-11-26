@@ -3,13 +3,21 @@
 {% block title %}{{ Titulo }}{% endblock %}
 
 {% block content %}
-<h1>{{ Titulo }}</h1>
-<form method="POST">
+<h1 class="text-center">{{ Titulo }}</h1>
+
+<form method="POST" class="form-container">
     {% csrf_token %}
+    
+    <!-- Campos do Formulário -->
     {{ form.as_p }}
-    <div class="form-actions">
-        <button type="submit bnt-primary">Salvar</button>
-        <a href="{% url 'listar_times' %}" class="cancel-btn">Cancelar</a>
+
+    <!-- Ações do formulário -->
+    <div class="form-actions text-center">
+        <!-- Botão de submit estilizado com Bootstrap -->
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        
+        <!-- Link para cancelar -->
+        <a href="{% url 'listar_times' %}" class="btn btn-secondary cancel-btn">Cancelar</a>
     </div>
 </form>
 {% endblock %}

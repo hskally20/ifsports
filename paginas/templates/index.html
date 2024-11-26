@@ -3,45 +3,62 @@
 {% block title %}Página Inicial{% endblock %}
 
 {% block content %}
-<h1>Bem-vindo ao Sistema de Gestão de Competições</h1>
-<p>Escolha uma das opções abaixo para gerenciar os dados:</p>
+<h1 class="text-center mb-4">Bem-vindo ao Sistema de Gestão de Competições</h1>
+<p class="text-center mb-4">Escolha uma das opções abaixo para gerenciar os dados:</p>
 
-<div class="menu-geral">
-    <!-- Seção para Times -->
-    <section class="menu-bloco">
-        <h2>Gerenciar Times</h2>
-        <ul>
-            <li><a href="{% url 'listar_times' %}">Listar Times</a></li>
-            <li><a href="{% url 'criar_time' %}">Adicionar Novo Time</a></li>
-        </ul>
-    </section>
+<!-- Menu geral com cards -->
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    <!-- Card para Gerenciar Times -->
+    <div class="col">
+        <div class="card shadow-sm">
+            <div class="card-body text-center">
+                <i class="fas fa-users fa-3x text-success mb-3"></i> <!-- Ícone de times -->
+                <h5 class="card-title">Gerenciar Times</h5>
+                <p class="card-text">Administre os times da competição, adicione novos ou visualize os existentes.</p>
+                <a href="{% url 'listar_times' %}" class="btn btn-outline-success">Listar Times</a>
+                <a href="{% url 'criar_time' %}" class="btn btn-outline-success mt-2">Adicionar Novo Time</a>
+            </div>
+        </div>
+    </div>
 
-    <!-- Seção para Jogadores -->
-    <section class="menu-bloco">
-        <h2>Gerenciar Jogadores</h2>
-        <ul>
-            <li><a href="{% url 'listar_jogadores' %}">Listar Jogadores</a></li>
-            <li><a href="{% url 'criar_jogador' %}">Adicionar Novo Jogador</a></li>
-        </ul>
-    </section>
+    <!-- Card para Gerenciar Jogadores -->
+    <div class="col">
+        <div class="card shadow-sm">
+            <div class="card-body text-center">
+                <i class="fas fa-user fa-3x text-primary mb-3"></i> <!-- Ícone de jogadores -->
+                <h5 class="card-title">Gerenciar Jogadores</h5>
+                <p class="card-text">Gerencie os jogadores da competição, incluindo o cadastro de novos jogadores.</p>
+                <a href="{% url 'listar_jogadores' %}" class="btn btn-outline-primary">Listar Jogadores</a>
+                <a href="{% url 'criar_jogador' %}" class="btn btn-outline-primary mt-2">Adicionar Novo Jogador</a>
+            </div>
+        </div>
+    </div>
 
-    <!-- Seção para Árbitros -->
-    <section class="menu-bloco">
-        <h2>Gerenciar Árbitros</h2>
-        <ul>
-            <li><a href="{% url 'listar_arbitros' %}">Listar Árbitros</a></li>
-            <li><a href="{% url 'criar_arbitro' %}">Adicionar Novo Árbitro</a></li>
-        </ul>
-    </section>
+    <!-- Card para Gerenciar Árbitros -->
+    <div class="col">
+        <div class="card shadow-sm">
+            <div class="card-body text-center">
+                <i class="fas fa-gavel fa-3x text-warning mb-3"></i> <!-- Ícone de árbitros -->
+                <h5 class="card-title">Gerenciar Árbitros</h5>
+                <p class="card-text">Cadastre e visualize árbitros para os eventos da competição.</p>
+                <a href="{% url 'listar_arbitros' %}" class="btn btn-outline-warning">Listar Árbitros</a>
+                <a href="{% url 'criar_arbitro' %}" class="btn btn-outline-warning mt-2">Adicionar Novo Árbitro</a>
+            </div>
+        </div>
+    </div>
 
-    <!-- Seção para Eventos -->
-    <section class="menu-bloco">
-        <h2>Gerenciar Eventos</h2>
-        <ul>
-            <li><a href="{% url 'listar_eventos' %}">Listar Eventos</a></li>
-            <li><a href="{% url 'criar_evento' %}">Adicionar Novo Evento</a></li>
-        </ul>
-    </section>
+    <!-- Card para Gerenciar Eventos -->
+    <div class="col">
+        <div class="card shadow-sm">
+            <div class="card-body text-center">
+                <i class="fas fa-calendar-alt fa-3x text-danger mb-3"></i> <!-- Ícone de eventos -->
+                <h5 class="card-title">Gerenciar Eventos</h5>
+                <p class="card-text">Crie e visualize eventos para a competição.</p>
+                <a href="{% url 'listar_eventos' %}" class="btn btn-outline-danger">Listar Eventos</a>
+                <a href="{% url 'criar_evento' %}" class="btn btn-outline-danger mt-2">Adicionar Novo Evento</a>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}
