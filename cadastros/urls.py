@@ -1,10 +1,9 @@
 from django.urls import path
-from .views import (
-    TimeListView, TimeCreateView, TimeUpdateView, TimeDeleteView,
-    JogadorListView, JogadorCreateView, JogadorUpdateView, JogadorDeleteView,
-    ArbitroListView, ArbitroCreateView, ArbitroUpdateView, ArbitroDeleteView,
-    EventoListView, EventoCreateView, EventoUpdateView, EventoDeleteView
-)
+from .views import  TimeListView, TimeCreateView, TimeUpdateView, TimeDeleteView
+from .views import   JogadorListView, JogadorCreateView, JogadorUpdateView, JogadorDeleteView
+from .views import   ArbitroListView, ArbitroCreateView, ArbitroUpdateView, ArbitroDeleteView
+from .views import  EventoListView, EventoCreateView, EventoUpdateView, EventoDeleteView
+
 
 urlpatterns = [
     # Rotas para Times
