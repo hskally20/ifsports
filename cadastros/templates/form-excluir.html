@@ -9,6 +9,5 @@
 <form method="POST">
     {% csrf_token %}
     <button type="submit" class="delete-btn">Excluir</button>
-    <a href="{% url 'listar_times' %}" class="cancel-btn">Cancelar</a>
 </form>
 {% endblock %}

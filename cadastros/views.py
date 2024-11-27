@@ -40,7 +40,7 @@ class TimeList(GroupRequiredMixin, ListView):
 
 
 class TimeCreateView(GroupRequiredMixin, CreateView):
-    group_required = 'Admin'
+    
     model = Time
     fields = ['nome', 'frase_efeito', 'qtd_jogadores']
     template_name = 'form.html'
@@ -52,7 +52,7 @@ class TimeCreateView(GroupRequiredMixin, CreateView):
         return context
 
 class TimeUpdate(GroupRequiredMixin, UpdateView):
-    group_required = 'Admin'
+   
     model = Time
     fields = ['nome', 'frase_efeito', 'qtd_jogadores']
     template_name = 'form.html'
@@ -64,118 +64,128 @@ class TimeUpdate(GroupRequiredMixin, UpdateView):
         return context
 
 class TimeDelete(GroupRequiredMixin, DeleteView):
-    group_required = 'Admin'
+    
     model = Time
     template_name = 'form-excluir.html'
     success_url = reverse_lazy('listar-times')
-
 # Views para Jogador
 class JogadorList(GroupRequiredMixin, ListView):
-    group_required = 'Admin'
     model = Jogador
-    template_name = 'listar/jogadores.html'
+    template_name = 'listas/jogadores.html'  # Alterado
     context_object_name = 'jogadores'
+    group_required = 'Admin'
+
 
 class JogadorCreateView(GroupRequiredMixin, CreateView):
-    group_required = 'Admin'
     model = Jogador
     fields = ['nome', 'idade', 'posicao', 'time']
-    template_name = 'form.html'
-    success_url = reverse_lazy('listar_jogadores')
+    template_name = 'listas/form.html'  # Alterado
+    success_url = reverse_lazy('listar_jogadores')  # Alterado
+    group_required = 'Admin'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['Titulo'] = 'Criar Jogador'
         return context
 
+
 class JogadorUpdate(GroupRequiredMixin, UpdateView):
-    group_required = 'Admin'
     model = Jogador
     fields = ['nome', 'idade', 'posicao', 'time']
-    template_name = 'form.html'
-    success_url = reverse_lazy('listar_jogadores')
+    template_name = 'listas/form.html'  # Alterado
+    success_url = reverse_lazy('listar_jogadores')  # Alterado
+    group_required = 'Admin'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['Titulo'] = 'Atualizar Jogador'
         return context
 
+
 class JogadorDelete(GroupRequiredMixin, DeleteView):
-    group_required = 'Admin'
     model = Jogador
-    template_name = 'form-excluir.html'
-    success_url = reverse_lazy('listar_jogadores')
+    template_name = 'listas/form-excluir.html'  # Alterado
+    success_url = reverse_lazy('listar_jogadores')  # Alterado
+    group_required = 'Admin'
+
 
 # Views para Árbitro
 class ArbitroList(GroupRequiredMixin, ListView):
-    group_required = 'Admin'
     model = Arbitro
-    template_name = 'arbitro/listar_arbitros.html'
+    template_name = 'listas/arbitros.html'  # Alterado
     context_object_name = 'arbitros'
+    group_required = 'Admin'
+
 
 class ArbitroCreateView(GroupRequiredMixin, CreateView):
-    group_required = 'Admin'
     model = Arbitro
     fields = ['nome', 'experiencia', 'cidade']
-    template_name = 'form.html'
-    success_url = reverse_lazy('listar_arbitros')
+    template_name = 'listas/form.html'  # Alterado
+    success_url = reverse_lazy('listar_arbitros')  # Alterado
+    group_required = 'Admin'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['Titulo'] = 'Criar Árbitro'
         return context
 
+
 class ArbitroUpdate(GroupRequiredMixin, UpdateView):
-    group_required = 'Admin'
     model = Arbitro
     fields = ['nome', 'experiencia', 'cidade']
-    template_name = 'form.html'
-    success_url = reverse_lazy('listar_arbitros')
+    template_name = 'listas/form.html'  # Alterado
+    success_url = reverse_lazy('listar_arbitros')  # Alterado
+    group_required = 'Admin'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['Titulo'] = 'Atualizar Árbitro'
         return context
 
+
 class ArbitroDelete(GroupRequiredMixin, DeleteView):
-    group_required = 'Admin'
     model = Arbitro
-    template_name = 'form-excluir.html'
-    success_url = reverse_lazy('listar_arbitros')
+    template_name = 'listas/form-excluir.html'  # Alterado
+    success_url = reverse_lazy('listar_arbitros')  # Alterado
+    group_required = 'Admin'
+
 
 # Views para Evento
 class EventoList(GroupRequiredMixin, ListView):
-    group_required = 'Admin'
     model = Evento
-    template_name = 'evento/listar-eventos.html'
+    template_name = 'listas/eventos.html'  # Alterado
     context_object_name = 'eventos'
+    group_required = 'Admin'
+
 
 class EventoCreateView(GroupRequiredMixin, CreateView):
-    group_required = 'Admin'
     model = Evento
     fields = ['nome', 'data', 'esporte', 'times', 'descricao']
-    template_name = 'form.html'
-    success_url = reverse_lazy('listar_eventos')
+    template_name = 'listas/form.html' 
+    success_url = reverse_lazy('listar_eventos')  
+    group_required = 'Admin'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['Titulo'] = 'Criar Evento'
         return context
 
+
 class EventoUpdate(GroupRequiredMixin, UpdateView):
-    group_required = 'Admin'
     model = Evento
     fields = ['nome', 'data', 'esporte', 'times', 'descricao']
-    template_name = 'form.html'
-    success_url = reverse_lazy('listar_eventos')
+    template_name = 'listas/form.html'  
+    success_url = reverse_lazy('listar_eventos')  
+    group_required = 'Admin'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['Titulo'] = 'Atualizar Evento'
         return context
 
+
 class EventoDelete(GroupRequiredMixin, DeleteView):
-    group_required = 'Admin'
     model = Evento
-    template_name = 'form-excluir.html'
-    success_url = reverse_lazy('listar_eventos')
+    template_name = 'listas/form-excluir.html'  
+    success_url = reverse_lazy('listar_eventos')  
+    group_required = 'Admin'
