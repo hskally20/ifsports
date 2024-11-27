@@ -1,0 +1,17 @@
+{% extends 'modelo.html' %}
+
+{% block titulo %}
+    <title>Login</title>
+{% endblock %}
+
+{% block conteudo %}
+<div class="container">
+    <h3>Login</h3>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Entrar</button>
+    </form>
+    <p>Não tem uma conta? <a href="{% url 'usuarios:registrar' %}">Registrar-se</a></p>
+</div>
+{% endblock %}

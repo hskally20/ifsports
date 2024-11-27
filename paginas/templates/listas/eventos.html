@@ -1,0 +1,71 @@
+{% extends 'modelo.html' %}
+
+{% load static %}
+
+{% block title %}
+    <title>Eventos Cadastrados</title>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h3>Lista de Eventos Cadastrados</h3>
+    
+    <hr>
+
+    <div class="table-responsive">
+        <form action="?" method="GET">
+            <input type="text" name="evento" class="p-1 border" value="{{ request.GET.evento }}" placeholder="Buscar por evento">
+            <button type="submit" class="btn btn-success">Buscar</button>
+            <a href="{% url 'listar-eventos' %}">Limpar</a>
+        </form>
+
+        <hr>
+
+        <table class="table table-striped">
+            <tr>
+                <th>Nome do Evento</th>
+                <th>Data</th>
+                <th>Esporte</th>
+                <th>Opções</th>
+            </tr>
+
+            {% for evento in eventos %}
+            <tr>
+                <td>{{ evento.nome }}</td>
+                <td>{{ evento.data }}</td>
+                <td>{{ evento.esporte }}</td>
+                <td>
+                    <a href="{% url 'editar-evento' evento.pk %}" class="btn btn-warning btn-sm" title="Editar">Editar</a>
+                    <a href="{% url 'excluir-evento' evento.pk %}" class="btn btn-danger btn-sm" title="Excluir">Excluir</a>
+                </td>
+            </tr>
+
+            {% empty %}
+            <tr>
+                <td colspan="4">Nenhum evento registrado.</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <div class="text-center">
+            <a href="?page=1">Primeira</a>
+
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}">Voltar</a>
+            {% endif %}
+
+            <span>Página: {{ page_obj.number }}</span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Próxima</a>
+            {% endif %}
+
+            <a href="?page={{ page_obj.paginator.num_pages }}">Última</a>
+        </div>
+    </div>
+
+    <div class="text-center mt-3">
+        <a href="{% url 'cadastrar-evento' %}" class="btn btn-primary">Adicionar Novo Evento</a>
+    </div>
+</div>
+{% endblock %}

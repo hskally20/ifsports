@@ -1,0 +1,13 @@
+{% extends 'modelo.html' %}
+
+{% block titulo %}
+    <title>Perfil do Usuário</title>
+{% endblock %}
+
+{% block conteudo %}
+<div class="container">
+    <h3>Bem-vindo, {{ user.username }}</h3>
+    <p>Este é o seu perfil.</p>
+    <a href="{% url 'usuarios:logout' %}" class="btn btn-danger">Sair</a>
+</div>
+{% endblock %}

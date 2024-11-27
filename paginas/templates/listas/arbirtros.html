@@ -1,0 +1,71 @@
+{% extends 'modelo.html' %}
+
+{% load static %}
+
+{% block title %}
+    <title>Árbitros Cadastrados</title>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h3>Lista de Árbitros Cadastrados</h3>
+    
+    <hr>
+
+    <div class="table-responsive">
+        <form action="?" method="GET">
+            <input type="text" name="arbitro" class="p-1 border" value="{{ request.GET.arbitro }}" placeholder="Buscar por árbitro">
+            <button type="submit" class="btn btn-success">Buscar</button>
+            <a href="{% url 'listar-arbitros' %}">Limpar</a>
+        </form>
+
+        <hr>
+
+        <table class="table table-striped">
+            <tr>
+                <th>Nome do Árbitro</th>
+                <th>Experiência</th>
+                <th>Cidade</th>
+                <th>Opções</th>
+            </tr>
+
+            {% for arbitro in arbitros %}
+            <tr>
+                <td>{{ arbitro.nome }}</td>
+                <td>{{ arbitro.experiencia }}</td>
+                <td>{{ arbitro.cidade }}</td>
+                <td>
+                    <a href="{% url 'editar-arbitro' arbitro.pk %}" class="btn btn-warning btn-sm" title="Editar">Editar</a>
+                    <a href="{% url 'excluir-arbitro' arbitro.pk %}" class="btn btn-danger btn-sm" title="Excluir">Excluir</a>
+                </td>
+            </tr>
+
+            {% empty %}
+            <tr>
+                <td colspan="4">Nenhum árbitro registrado.</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <div class="text-center">
+            <a href="?page=1">Primeira</a>
+
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}">Voltar</a>
+            {% endif %}
+
+            <span>Página: {{ page_obj.number }}</span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Próxima</a>
+            {% endif %}
+
+            <a href="?page={{ page_obj.paginator.num_pages }}">Última</a>
+        </div>
+    </div>
+
+    <div class="text-center mt-3">
+        <a href="{% url 'cadastrar-arbitro' %}" class="btn btn-primary">Adicionar Novo Árbitro</a>
+    </div>
+</div>
+{% endblock %}
