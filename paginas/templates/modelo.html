@@ -38,7 +38,7 @@
     <div class="sidebar">
         <span class="close-btn">&times;</span>
         <a href="{% url 'inicio' %}">Início</a>
-        <a href="#">Cursos</a>
+        <a href="{ % url 'login' %}">Cursos</a>
         <a href="#">Sobre</a>
         <a href="#">Contato</a>
     </div>
@@ -51,7 +51,11 @@
             {% endblock %}
         </div>
     </main>
-
+    <div class="content">
+        {% block conteudo %}
+     
+        {% endblock %}
+    </div>
     <!-- Rodapé -->
     <footer class="footer bg-dark text-white py-3">
         <div class="container text-center">

@@ -12,9 +12,8 @@ class Time(models.Model):
         # Atualizar o campo 'updated_at' sempre que o objeto for salvo
         self.updated_at = timezone.now()
         super().save(*args, **kwargs)
-
     def __str__(self):
-        return self.nomelf.nome
+        return self.nome
 
 
 # Modelo de Jogador

@@ -1,13 +1,13 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.forms import AuthenticationForm
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
+from django import forms
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
-from django.http import HttpResponse
-from django.contrib.auth.models import Group
-from django import forms
-from django.contrib.auth.models import User
+from django.contrib.auth import login as auth_login
+from django.contrib.auth.forms import UserCreationForm
 
 
 class UsuarioForm(forms.ModelForm):
@@ -33,25 +33,19 @@ def logout_view(request):
     logout(request)
     return redirect('login')  # Redireciona para a página de login após o logout
 
-# View de Login
-def login_view(request):
-    if request.method == 'POST':
-        form = AuthenticationForm(data=request.POST)
-        if form.is_valid():
-            # Autentica o usuário
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('profile')  # Redireciona para a página de perfil após o login
-            else:
-                # Caso o usuário não seja autenticado
-                form.add_error(None, 'Usuário ou senha inválidos')
-    else:
-        form = AuthenticationForm()
 
-    return render(request, 'login.html', {'form': form})
+
+def login_view(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('inicio')  # Redirecione para a página inicial ou desejada
+        else:
+            messages.error(request, "Usuário ou senha inválidos. Tente novamente.")
+    return render(request, 'login.html')
 
 # Página de Perfil (necessário estar logado para acessar)
 @login_required
@@ -60,23 +54,15 @@ def profile_view(request):
 
 
 # Registro de novo usuário (usando CreateView)
+
 class UsuarioCreate(CreateView):
-    form_class = UsuarioForm
-    template_name = 'usuarios/form.html'
-    success_url = reverse_lazy('login')  # Redireciona para a página de login após o registro
+    model = User
+    form_class = UserCreationForm
+    template_name = 'registrar-se.html'
+    success_url = reverse_lazy('login')
 
     def form_valid(self, form):
-        # Verifica se o grupo 'Paciente' existe
-        grupo = get_object_or_404(Group, name='Paciente')
-        # Chama o método form_valid da superclasse para salvar o formulário
-        response = super().form_valid(form)
-        # Adiciona o usuário ao grupo
-        self.object.groups.add(grupo)
-        self.object.save()
-        return response
-
-    def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(*args, **kwargs)
-        context['Titulo'] = 'Registrar Novo Usuário'
-        return context
+        user = form.save()
+        auth_login(self.request, user)
+        return redirect(self.success_url)
 

@@ -1,0 +1,36 @@
+{% extends 'modelo.html' %}
+{% load static %}
+
+{% block titulo %}
+    <title>Login</title>
+{% endblock %}
+
+{% block conteudo %}
+<div class="login-container">
+    <div class="form-wrapper">
+        <h2>Bem-vindo de volta</h2>
+        <p>Por favor, insira suas credenciais para continuar.</p>
+        <form method="POST" action="{% url 'login' %}" id="loginForm">
+            {% csrf_token %}
+            <!-- Campo de usuário -->
+            <div class="input-group">
+                <label for="id_username">Usuário</label>
+                <input type="text" id="id_username" name="username" placeholder="Digite seu usuário" required>
+            </div>
+            <!-- Campo de senha -->
+            <div class="input-group">
+                <label for="id_password">Senha</label>
+                <input type="password" id="id_password" name="password" placeholder="Digite sua senha" required>
+            </div>
+            <!-- Botão de login -->
+            <button type="submit" class="btn-login">Entrar</button>
+            <!-- Links extras -->
+            <div class="extra-links">
+                <a href="#">Esqueceu sua senha?</a>
+                <span> | </span>
+                <a href="{% url 'registrar' %}">Registrar-se</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

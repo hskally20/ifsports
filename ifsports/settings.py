@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'paginas.apps.PaginasConfig',
-    'cadastros.apps.CadastrosConfig'    
-    # 'usuarios.apps.UsuariosConfig',
+    'cadastros.apps.CadastrosConfig' ,  
+    'usuarios.apps.UsuariosConfig',
 ]
 
 MIDDLEWARE = [
@@ -114,6 +114,7 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_L10N = True
+DATE_INPUT_FORMATS = ['%d/%m/%Y']
 
 USE_TZ = True
 
@@ -130,3 +131,6 @@ os.path.join(BASE_DIR,'static')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'inicio'
+LOGOUT_REDIRECT_URL = 'login'

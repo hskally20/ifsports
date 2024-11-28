@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from django.http import HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
+from django import forms
 
 @login_required
 def profile_view(request):
@@ -77,10 +78,11 @@ class JogadorList(GroupRequiredMixin, ListView):
 
 
 class JogadorCreateView(GroupRequiredMixin, CreateView):
+    login_url = reverse_lazy('login')
     model = Jogador
     fields = ['nome', 'idade', 'posicao', 'time']
-    template_name = 'listas/form.html'  # Alterado
-    success_url = reverse_lazy('listar_jogadores')  # Alterado
+    template_name = 'form.html'  # Alterado
+    success_url = reverse_lazy('listar-jogadores')  # Alterado
     group_required = 'Admin'
 
     def get_context_data(self, **kwargs):
@@ -92,8 +94,8 @@ class JogadorCreateView(GroupRequiredMixin, CreateView):
 class JogadorUpdate(GroupRequiredMixin, UpdateView):
     model = Jogador
     fields = ['nome', 'idade', 'posicao', 'time']
-    template_name = 'listas/form.html'  # Alterado
-    success_url = reverse_lazy('listar_jogadores')  # Alterado
+    template_name = 'form.html'  # Alterado
+    success_url = reverse_lazy('listar-jogadores')  # Alterado
     group_required = 'Admin'
 
     def get_context_data(self, **kwargs):
@@ -104,8 +106,8 @@ class JogadorUpdate(GroupRequiredMixin, UpdateView):
 
 class JogadorDelete(GroupRequiredMixin, DeleteView):
     model = Jogador
-    template_name = 'listas/form-excluir.html'  # Alterado
-    success_url = reverse_lazy('listar_jogadores')  # Alterado
+    template_name = 'form-excluir.html'  # Alterado
+    success_url = reverse_lazy('listar-jogadores')  # Alterado
     group_required = 'Admin'
 
 
@@ -120,8 +122,8 @@ class ArbitroList(GroupRequiredMixin, ListView):
 class ArbitroCreateView(GroupRequiredMixin, CreateView):
     model = Arbitro
     fields = ['nome', 'experiencia', 'cidade']
-    template_name = 'listas/form.html'  # Alterado
-    success_url = reverse_lazy('listar_arbitros')  # Alterado
+    template_name = 'form.html'  # Alterado
+    success_url = reverse_lazy('listar-arbitros')  # Alterado
     group_required = 'Admin'
 
     def get_context_data(self, **kwargs):
@@ -133,8 +135,8 @@ class ArbitroCreateView(GroupRequiredMixin, CreateView):
 class ArbitroUpdate(GroupRequiredMixin, UpdateView):
     model = Arbitro
     fields = ['nome', 'experiencia', 'cidade']
-    template_name = 'listas/form.html'  # Alterado
-    success_url = reverse_lazy('listar_arbitros')  # Alterado
+    template_name = 'form.html'  # Alterado
+    success_url = reverse_lazy('listar-arbitros')  # Alterado
     group_required = 'Admin'
 
     def get_context_data(self, **kwargs):
@@ -146,7 +148,7 @@ class ArbitroUpdate(GroupRequiredMixin, UpdateView):
 class ArbitroDelete(GroupRequiredMixin, DeleteView):
     model = Arbitro
     template_name = 'listas/form-excluir.html'  # Alterado
-    success_url = reverse_lazy('listar_arbitros')  # Alterado
+    success_url = reverse_lazy('listar-arbitros')  # Alterado
     group_required = 'Admin'
 
 
@@ -161,9 +163,12 @@ class EventoList(GroupRequiredMixin, ListView):
 class EventoCreateView(GroupRequiredMixin, CreateView):
     model = Evento
     fields = ['nome', 'data', 'esporte', 'times', 'descricao']
-    template_name = 'listas/form.html' 
-    success_url = reverse_lazy('listar_eventos')  
+    template_name = 'form.html' 
+    success_url = reverse_lazy('listar-eventos')  
     group_required = 'Admin'
+    widgets = {
+            'data': forms.DateInput(attrs={'type': 'date'}),  # Gera um campo HTML5 de data
+        }
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -174,8 +179,8 @@ class EventoCreateView(GroupRequiredMixin, CreateView):
 class EventoUpdate(GroupRequiredMixin, UpdateView):
     model = Evento
     fields = ['nome', 'data', 'esporte', 'times', 'descricao']
-    template_name = 'listas/form.html'  
-    success_url = reverse_lazy('listar_eventos')  
+    template_name = 'form.html'  
+    success_url = reverse_lazy('listar-eventos')  
     group_required = 'Admin'
 
     def get_context_data(self, **kwargs):
@@ -186,6 +191,6 @@ class EventoUpdate(GroupRequiredMixin, UpdateView):
 
 class EventoDelete(GroupRequiredMixin, DeleteView):
     model = Evento
-    template_name = 'listas/form-excluir.html'  
-    success_url = reverse_lazy('listar_eventos')  
+    template_name = 'form-excluir.html'  
+    success_url = reverse_lazy('listar-eventos')  
     group_required = 'Admin'
