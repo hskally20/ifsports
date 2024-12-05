@@ -3,19 +3,20 @@
 {% block title %}{{ Titulo }}{% endblock %}
 
 {% block content %}
-<h1 class="text-center">{{ Titulo }}</h1>
+<h1 class="text-center mb-5">{{ Titulo }}</h1>
 
 <form method="POST" class="form-container">
     {% csrf_token %}
     
     <!-- Campos do Formulário -->
-    {{ form.as_p }}
+    <div class="form-group mb-3">
+        {{ form.as_p }}
+    </div>
 
     <!-- Ações do formulário -->
-    <div class="form-actions text-center">
-        <!-- Botão de submit estilizado com Bootstrap -->
+    <div class="form-actions text-center mt-4">
+        <!-- Botão de submit estilizado -->
         <button type="submit" class="btn btn-primary">Salvar</button>
-        
     </div>
 </form>
 {% endblock %}
