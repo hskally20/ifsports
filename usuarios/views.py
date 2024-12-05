@@ -58,9 +58,8 @@ def profile_view(request):
 class UsuarioCreate(CreateView):
     model = User
     form_class = UserCreationForm
-    template_name = 'registrar-se.html'
+    template_name = 'registrar.html'
     success_url = reverse_lazy('login')
-
     def form_valid(self, form):
         user = form.save()
         auth_login(self.request, user)

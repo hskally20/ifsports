@@ -3,8 +3,10 @@ from .views import  TimeList, TimeCreateView, TimeUpdate, TimeDelete
 from .views import  JogadorList, JogadorCreateView, JogadorUpdate, JogadorDelete
 from .views import  ArbitroList, ArbitroCreateView, ArbitroUpdate, ArbitroDelete
 from .views import  EventoList, EventoCreateView, EventoUpdate, EventoDelete
-
+from . import views
 urlpatterns = [
+    path('perfil/', views.profile, name='perfil'),
+
     # Rotas para Times
     path('cadastrar/time/', TimeCreateView.as_view(), name='cadastrar-time'),
     path('editar/time/<int:pk>/', TimeUpdate.as_view(), name='editar-time'),

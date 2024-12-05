@@ -10,9 +10,9 @@ from django.contrib.auth.decorators import login_required
 from django import forms
 
 @login_required
-def profile_view(request):
-    return render(request, 'usuarios/profile.html')
-
+def profile(request):
+    user = request.user  # Obtém o usuário autenticado
+    return render(request, 'perfil.html', {'user': user})
 # Mixins de grupo
 class GroupRequiredMixin(LoginRequiredMixin):
     group_required = None

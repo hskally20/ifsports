@@ -1,5 +1,14 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    bio = models.TextField(blank=True, null=True)
+    avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
+
+    def __str__(self):
+        return self.user.username
 # Modelo de Time
 class Time(models.Model):
     nome = models.CharField(max_length=100, unique=True)
