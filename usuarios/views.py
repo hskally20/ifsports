@@ -8,20 +8,49 @@ from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 from django.contrib.auth import login as auth_login
 from django.contrib.auth.forms import UserCreationForm
-class UsuarioCreate(CreateView):
-    model = User
-    form_class = UserCreationForm
-    template_name = 'registrar.html'
-    success_url = reverse_lazy('login')
-    def form_valid(self, form):
-        user = form.save()
-        auth_login(self.request, user)  # Faz o login automaticamente após o registro
-        return redirect(self.success_url)
+class CustomUserCreationForm(UserCreationForm):
+    email = forms.EmailField(required=True, label="E-mail")
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
+    def clean_password2(self):
+        password1 = self.cleaned_data.get("password1")
+        password2 = self.cleaned_data.get("password2")
+
+        if password1 and password2 and password1 != password2:
+            raise forms.ValidationError("As senhas não coincidem.")
+        return password2
+        if len(password2) < 8:
+            raise forms.ValidationError("A senha deve ter pelo menos 8 caracteres.")
+        if password2.isdigit():
+            raise forms.ValidationError("A senha não pode ser apenas numérica.")
+        # Aqui você pode adicionar mais validações customizadas
+        return password2
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.email = self.cleaned_data['email']
+        if commit:
+            user.save()
+        return user
+
+def registrar(request):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            print("Formulário válido!")  # Log para debug
+            form.save()
+            return redirect('login')
+        else:
+            print("Erros no formulário:", form.errors)  # Log para debug
+    else:
+        form = CustomUserCreationForm()
+    return render(request, 'registrar.html', {'form': form})
 
 # Função de Logout
 def logout_view(request):
     logout(request)
-    return redirect('login')  # Redireciona para a página de login após o logout
+    return redirect('inicio')  # Redireciona para a página de login após o logout
 
 def login_view(request):
     if request.method == "POST":

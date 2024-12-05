@@ -15,12 +15,3 @@ closeBtn.addEventListener('click', () => {
     menuToggle.classList.remove('active');  // Altera o estado do botão de menu
 });
 
-document.getElementById('registerForm').addEventListener('submit', function(event) {
-    var password1 = document.getElementById('password1').value;
-    var password2 = document.getElementById('password2').value;
-    
-    if (password1 !== password2) {
-        event.preventDefault();
-        alert('As senhas não coincidem!');
-    }
-});
