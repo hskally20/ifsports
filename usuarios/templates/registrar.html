@@ -5,68 +5,75 @@
 {% endblock %}
 
 {% block conteudo %}
-    <div class="form-container">
-        <div class="card">
-            <h1 class="text-center">Cadastro de Usuário</h1>
-            <p class="text-center">Preencha os campos abaixo para criar sua conta.</p>
+<div class="login-container">
+    <div class="form-wrapper">
+        <h2>Cadastro de Usuário</h2>
+        <p>Preencha os campos abaixo para criar sua conta.</p>
+        
+        <form method="POST" action="{% url 'registrar' %}" id="registerForm">
+            {% csrf_token %}
             
-            <form method="POST" class="needs-validation" novalidate>
-                {% csrf_token %}
-                
-                <div class="input-group">
-                    <label for="{{ form.username.id_for_label }}">Usuário</label>
-                    {{ form.username }} 
-                    {% if form.username.errors %}
-                        <div class="invalid-feedback">
-                            {% for error in form.username.errors %}
-                                <p>{{ error }}</p>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                </div>
-
-                <div class="input-group">
-                    <label for="{{ form.email.id_for_label }}">E-mail</label>
-                    {{ form.email }}
-                    {% if form.email.errors %}
-                        <div class="invalid-feedback">
-                            {% for error in form.email.errors %}
-                                <p>{{ error }}</p>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                </div>
-
-                <div class="input-group">
-                    <label for="{{ form.password1.id_for_label }}">Senha</label>
-                    {{ form.password1 }}
-                    {% if form.password1.errors %}
-                        <div class="invalid-feedback">
-                            {% for error in form.password1.errors %}
-                                <p>{{ error }}</p>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                </div>
-
-                <div class="input-group">
-                    <label for="{{ form.password2.id_for_label }}">Confirmar Senha</label>
-                    {{ form.password2 }}
-                    {% if form.password2.errors %}
-                        <div class="invalid-feedback">
-                            {% for error in form.password2.errors %}
-                                <p>{{ error }}</p>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                </div>
-
-                <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
-            </form>
-
-            <div class="extra-links text-center mt-3">
-                <p>Já tem uma conta? <a href="{% url 'login' %}">Faça login</a></p>
+            <!-- Campo de usuário -->
+            <div class="input-group">
+                <label for="{{ form.username.id_for_label }}">Usuário</label>
+                {{ form.username }} 
+                {% if form.username.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.username.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
+
+            <!-- Campo de e-mail -->
+            <div class="input-group">
+                <label for="{{ form.email.id_for_label }}">E-mail</label>
+                {{ form.email }}
+                {% if form.email.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.email.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>            
+
+            <!-- Campo de senha -->
+            <div class="input-group">
+                <label for="{{ form.password1.id_for_label }}">Senha</label>
+                {{ form.password1 }}
+                {% if form.password1.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.password1.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Campo de confirmação de senha -->
+            <div class="input-group">
+                <label for="{{ form.password2.id_for_label }}">Confirmar Senha</label>
+                {{ form.password2 }}
+                {% if form.password2.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.password2.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Botão de envio -->
+            <button type="submit" class="btn-login w-100">Cadastrar</button>
+            
+        </form>
+
+        <!-- Links extras -->
+        <div class="extra-links text-center mt-3">
+            <p>Já tem uma conta? <a href="{% url 'login' %}">Faça login</a></p>
         </div>
     </div>
+</div>
 {% endblock %}
