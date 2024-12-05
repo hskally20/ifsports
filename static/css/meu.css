@@ -1,8 +1,7 @@
-/* Estilos gerais */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #f9f9f9; /* Fundo claro */
+    background-color: #f9f9f9;
     color: #333;
 }
 
@@ -57,8 +56,13 @@ body {
     left: 0;
     bottom: 0;
     padding: 2rem 1rem;
+    transform: translateX(-100%);
     transition: transform 0.3s ease-in-out;
     z-index: 1000;
+}
+
+.sidebar.active {
+    transform: translateX(0);
 }
 
 .sidebar a {
@@ -99,22 +103,22 @@ body {
     margin: 0;
 }
 
-/* Formulário de Cadastro */
-.form-container {
+/* Formulário de Login */
+.login-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 3rem 1rem;
-    max-width: 800px;
-    margin: 0 auto;
+    height: 100vh;
+    background-color: #f9f9f9; /* Fundo geral */
 }
 
 .form-wrapper {
-    background: #ffffff; /* Fundo branco */
+    background: #ffffff; /* Branco */
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
+    max-width: 400px;
     width: 100%;
 }
 
@@ -130,7 +134,7 @@ body {
 }
 
 .input-group {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     text-align: left;
 }
 
@@ -156,7 +160,7 @@ body {
     box-shadow: 0 0 5px rgba(42, 93, 73, 0.5);
 }
 
-.btn-submit {
+.btn-login {
     width: 100%;
     padding: 10px;
     font-size: 16px;
@@ -169,7 +173,7 @@ body {
     transition: background-color 0.3s ease;
 }
 
-.btn-submit:hover {
+.btn-login:hover {
     background-color: #218838; /* Verde mais escuro */
 }
 
@@ -190,21 +194,52 @@ body {
 
 /* Responsividade */
 @media (max-width: 768px) {
-    .form-wrapper {
-        padding: 20px;
+    .sidebar {
+        display: none;
     }
 
-    .form-wrapper h2 {
-        font-size: 1.5rem;
+    .sidebar.active {
+        display: block;
     }
 
-    .btn-submit {
-        font-size: 1rem;
-        padding: 8px 16px;
+    .menu ul {
+        flex-direction: column;
     }
 
-    .input-group input {
-        font-size: 12px;
-        padding: 8px;
+    .menu-toggle {
+        display: block;  /* O botão de menu é exibido ormalmente em telas menores */
     }
+}
+
+@media (min-width: 769px) {
+    .menu-toggle {
+        display: none;  /* O botão desaparece em telas maiores */
+    }
+}
+
+/* Estilos adicionais para os cards */
+.card {
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card i {
+    color: #28a745;
+}
+
+.btn-outline-success:hover,
+.btn-outline-primary:hover,
+.btn-outline-warning:hover,
+.btn-outline-danger:hover {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-danger{
+    background-color: red;
+    color :white
 }

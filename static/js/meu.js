@@ -3,15 +3,15 @@ const menuToggle = document.querySelector('.menu-toggle');
 const sidebar = document.querySelector('.sidebar');
 
 // Adiciona um evento de clique no botão para alternar a visibilidade da sidebar
-menuToggle.addEventListener('click', () => {
-    sidebar.classList.toggle('active');  // Ativa ou desativa a sidebar
-    menuToggle.classList.toggle('active');  // Ativa ou desativa o botão de menu
-});
+$(document).ready(function () {
+    // Alterna a classe 'active' na sidebar
+    $('.menu-toggle').click(function () {
+        $('.sidebar').toggleClass('active');
+        $(this).toggleClass('active');  // Adiciona ou remove a classe 'active' no botão de menu
+    });
 
-// Fecha a sidebar ao clicar no botão de fechar
-const closeBtn = document.querySelector('.sidebar .close-btn');
-closeBtn.addEventListener('click', () => {
-    sidebar.classList.remove('active');  // Remove a classe active para fechar a sidebar
-    menuToggle.classList.remove('active');  // Altera o estado do botão de menu
+    // Fecha a sidebar quando o botão de fechar for clicado
+    $('.close-btn').click(function () {
+        $('.sidebar').removeClass('active');
+    });
 });
-
