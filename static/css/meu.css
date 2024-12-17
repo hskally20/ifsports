@@ -243,3 +243,19 @@ body {
     background-color: red;
     color :white
 }
+.navbar-brand img {
+    height: 60px; 
+    object-fit: cover;
+}
+.navbar-nav .nav-link {
+    color: white !important;
+    font-weight: 500;
+    
+}
+.navbar-nav .nav-link:hover {
+    text-decoration: underline;
+    
+}
+.navbar-toggler {
+    border: none;
+}

@@ -18,31 +18,48 @@
         <div class="container d-flex justify-content-between align-items-center">
             <h1 class="logo">if sports</h1>
 
-            <!-- Botão do Menu Toggle (para dispositivos móveis) -->
-            <div style="align-items: right;">
-              <button class="menu-toggle" aria-label="Abrir Menu">
-                <i class="fas fa-bars"></i>
-              </button>
-            </div>
-            <!-- Menu de Navegação -->
-            <nav class="menu">
-                <ul class="nav">
-                    <li class="nav-item"><a href="{% url 'inicio' %}" class="nav-link text-white">Home</a></li>
-                    <li class="nav-item"><a href="listar-times" class="nav-link text-white">Times</a></li>
-                    <li class="nav-item"><a href="listar-jogadores" class="nav-link text-white">Jogadores</a></li>
-                    <li class="nav-item"><a href="listar-arbitros" class="nav-link text-white">Árbitros</a></li>
-                    {% if user.is_authenticated %}
-                    <li class="nav-item"> 
-                        <form action="{% url 'logout' %}" method="POST">
-                        {% csrf_token %}
-                        <button type="submit" >Logout</button>
-                       </form>
-                  </li>
-                    {% else %}
-                    <li class="nav-item"><a href="{% url 'login' %}">Login</a></li>
-                    <li class="nav-item"><a href="{% url 'registrar' %}">registra-se</a></li>
-                    {% endif %}
-                </ul>
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand mx-auto d-block" href="{% url 'inicio' %}">
+                        <img src="/static/images/logo.png" alt="Minha Marca" style="max-width: 100px; height: auto;" class="rounded-circle my-3">
+                    </a>
+                    
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{% url 'inicio' %}">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="listar-times">Times</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="listar-jogadores">Jogadores</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="listar-arbitros">Árbitros</a>
+                            </li>
+                            {% if user.is_authenticated %}
+                            <li class="nav-item"> 
+                                <form action="{% url 'logout' %}" method="POST" class="d-inline">
+                                    {% csrf_token %}
+                                    <button type="submit">Logout</button>
+                                </form>
+                            </li>
+                            {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{% url 'login' %}">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{% url 'registrar' %}">Registre-se</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
             </nav>
         </div>
     </header>
